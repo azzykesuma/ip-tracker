@@ -59,7 +59,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(mymap);
 
 updateMap = (updateMark = [100,100]) => {
-    map.setView(updateMark,13)
+    mymap.setView(updateMark,13)
     L.marker(updateMark).addTo(mymap)
 }
 
