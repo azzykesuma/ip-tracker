@@ -3,49 +3,17 @@ let key = 'at_pvlqoVaj8dOyYmHFsZZuHScqqPFG4';
 let url = 'https://geo.ipify.org/api/'
 let version = 'v1'
 
-// bypass CORS
-let bypass_cors = 'https://cors-anywhere.herokuapp.com/'
 
-const header = {
-    headers : {
-        'Access-Control-Allow-Origin' : '*'
-    }
-}
 
 // updated Data
 let ipData = document.getElementById('ipData')
 let ipLocation = document.getElementById('ipLocation')
-let timezone = document.getElementById('ipLocation')
+let timezone = document.getElementById('timezone')
 let isp = document.getElementById('isp')
 
 // form elements
 let searchBar = document.getElementById('ipSearch');
 let searchBtn = document.getElementById('searchBtn');
-
-// searchBtn.addEventListener('click',search_Api)
-
-// determining user location with API
-search_Api = (default_ip) => {
-    if(default_ip == undefined) {
-        // setting default ip adress
-        var ip_url = `${bypass_cors}${url}${version}?apikey=${key}`
-    } else {
-        var ip_url = `${bypass_cors}${url}${version}?Apikey=${key}&ipAdress=${default_ip}`
-    }
-
-    fetch(ip_url, header)
-    .then(res => res.json())
-    .then(data => {
-        ipData.innerHTML = data.ip;
-        ipLocation.innerHTML = `${data.location.city} ${data.location.country} ${data.location.postalCode}`   
-        timezone.innerHTML = data.location.timezone;
-        isp.innerHTML = data.isp;
-
-        updateMap([data.location.lat,data.location.lng])
-    })
-    // .catch(error => alert('failed to retrieve data, check your connection'))
-}
-
 
 // map section
 var mymap = L.map('map').setView([51.505, -0.09], 13);
@@ -63,6 +31,33 @@ updateMap = (updateMark = [100,100]) => {
     L.marker(updateMark).addTo(mymap)
 }
 
+// determining user location with API
+search_Api = (default_ip) => {
+    if(default_ip == undefined) {
+        // setting default ip adress
+        var ip_url = `${url}${version}?apiKey=${key}`
+    } else {
+        var ip_url = `${url}${version}?apiKey=${key}&ipAdress=${default_ip}`
+    }
+
+    fetch(ip_url)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        ipData.innerHTML = data.ip;
+        console.log(data.ip)
+        ipLocation.innerHTML = `${data.location.city} ${data.location.country} ${data.location.region}`   
+        timezone.innerHTML = data.location.timezone;
+        isp.innerHTML = data.isp;
+
+        updateMap([data.location.lat,data.location.lng])
+    })
+    // .catch(error => alert('failed to retrieve data, check your connection'))
+}
+
+
+
+
 // running the function
 search_Api();
 document.addEventListener('load',updateMap());
@@ -71,6 +66,7 @@ searchBtn.addEventListener('click', e => {
     e.preventDefault();
     if(searchBar.value != '' && searchBar.value != null) {
         search_Api(searchBar.value);
+        console.log(searchBar.value)
         return
     } 
     alert('please enter a valid IP adress')
