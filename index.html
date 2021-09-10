@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="./css/style.css" class="rel">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+  integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+  crossorigin=""></script>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | IP Address Tracker</title>
+
+</head>
+<body>
+  <header></header>
+  <section class="main">
+    <h1>IP Adress Tracker</h1>
+    <div class="formContainer">
+      <form action="">
+        <label for="ip"></label>
+        <input type="text" id="ipSearch"/>
+        <button id="searchBtn">
+          <img src="./images/icon-arrow.svg" alt="arrow-icon">
+        </button>
+      </form>
+    </div>
+    <div class="informationContainer">
+      <div class="informationItem">
+        <p>IP ADRESS</p>
+        <h2 id="ipData" class="information">192.920.212.312</h2>
+      </div>
+      <div class="informationItem">
+        <p>LOCATION</p>
+        <h2 id="ipLocation" class="information">Brooklyn,NY 1001</h2>
+      </div>
+      <div class="informationItem">
+        <p>TIMEZONE</p>
+        <h2 id="timezone" class="information">UTC -05.00</h2>
+      </div>
+      <div class="informationItem">
+        <p>ISP</p>
+        <h2 id="isp" class="information">SpaceX Starlink</h2>
+      </div>
+    </div>
+  </section>
+    <div id="map">
+      <img src="./images/icon-location.svg" alt="">
+    </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
